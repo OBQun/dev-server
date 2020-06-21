@@ -15,4 +15,5 @@ module.exports = {
   database: Environment.DATABASE,
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  synchronize: true
 }
