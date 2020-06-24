@@ -1,0 +1,43 @@
+@baseUrl=http://localhost:3000/apis/admin
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoxLCJpYXQiOjE1OTI3OTgzODl9.blE9QlCk-D7jzvaMKzvty7Lv57mjiPBfrNSJWGoR1pE
+
+
+### 登录
+POST {{baseUrl}}/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "password":"123456"
+}
+
+### 修改密码
+PUT {{baseUrl}}/changePassword HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "oldPassword":"123456",
+    "newPassword":"123456"
+}
+
+### 上传头像
+POST {{baseUrl}}/uploadAvatar HTTP/1.1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: {{token}}
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="avatar"; filename="avatar.jpg"
+Content-Type: image/jpeg
+
+< ./avatar.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### 修改信息
+PUT {{baseUrl}}/changeInfo HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "username":"hello"
+}

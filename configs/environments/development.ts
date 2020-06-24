@@ -8,5 +8,5 @@ export default {
   MY_PORT: 3306,
   USERNAME: 'root',
   PASSWORD: '',
-  DATABASE: 'koa_ex_db',
+  DATABASE: 'ob-qun_blog',
 }

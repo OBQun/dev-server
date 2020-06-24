@@ -18,6 +18,10 @@ export class Admin {
     @Column()
     password: string
 
+
+    @Column()
+    avatar: string
+
     @IsNotEmpty({ message: '名称不能为空' })
     @Column()
     name: string

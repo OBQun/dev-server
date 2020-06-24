@@ -1,1 +1,1 @@
-export * from './sessions.controller'
+export * from './admin.controller'
