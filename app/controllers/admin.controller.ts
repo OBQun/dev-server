@@ -46,7 +46,7 @@ export class AdminController {
         @UploadedFile('avatar', { options: avatarUploadOptions }) file: any): Promise<any> {
         const result = await this.service.saveAvatar(admin, file.path.substring(file.path.indexOf('/')))
         return result ? '头像上传成功' : new Error('头像上传失败')
-        // TODO 是否删除原头像
+        // TODO 是否删除原头像文件
     }
 
     // 修改信息

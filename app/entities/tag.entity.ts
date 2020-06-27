@@ -12,9 +12,6 @@ export class Tag {
     @Column()
     name: string
 
-    @Column()
-    icon: string
-
     @ManyToMany(type => Article, article => article.tags)
     @JoinColumn()
     articles: Article[]

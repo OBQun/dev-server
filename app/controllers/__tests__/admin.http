@@ -39,5 +39,5 @@ Content-Type: application/json
 Authorization: {{token}}
 
 {
-    "username":"hello"
+    "name":"hello"
 }
