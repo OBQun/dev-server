@@ -16,7 +16,7 @@ export class AdminService {
     }
 
     // 检查登录
-    async checkLogin(username: string, password: string): Promise<number | undefined> {
+    async checkLogin(username: string, password: string): Promise<number> {
         const admin: Admin = await this.repository.findOne({ username, password })
         return admin && admin.id
     }
@@ -29,9 +29,9 @@ export class AdminService {
     }
 
     // 保存头像位置到数据库
-    async saveAvatar(admin: Admin, avatarPath: string): Promise<boolean> {
+    async saveAvatar(admin: Admin, avatarPath: string): Promise<string> {
         admin.avatar = avatarPath;
-        return Boolean(await this.repository.save(admin))
+        return (await this.repository.save(admin)).avatar
     }
 
     // 更新用户信息

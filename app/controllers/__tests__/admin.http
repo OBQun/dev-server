@@ -12,7 +12,7 @@ Content-Type: application/json
 }
 
 ### 修改密码
-PUT {{baseUrl}}/changePassword HTTP/1.1
+PUT {{baseUrl}}/password HTTP/1.1
 Content-Type: application/json
 Authorization: {{token}}
 
@@ -22,7 +22,7 @@ Authorization: {{token}}
 }
 
 ### 上传头像
-POST {{baseUrl}}/uploadAvatar HTTP/1.1
+POST {{baseUrl}}/avatar HTTP/1.1
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 Authorization: {{token}}
 
@@ -34,7 +34,7 @@ Content-Type: image/jpeg
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 ### 修改信息
-PUT {{baseUrl}}/changeInfo HTTP/1.1
+PUT {{baseUrl}}/info HTTP/1.1
 Content-Type: application/json
 Authorization: {{token}}
 

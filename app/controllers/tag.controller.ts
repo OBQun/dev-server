@@ -13,21 +13,22 @@ export class TagController {
     }
 
     //添加标签
-    @Post('/add')
+    @Post()
     async addTag(@CurrentUser({ required: true }) admin: Admin,
         @BodyParam('name', { required: true }) name: string): Promise<any> {
-        return await this.service.addTag(name) || new Error('添加标签失败')
+        return { content: await this.service.addTag(name) }
     }
 
     // 删除标签
-    @Delete('/delete')
+    @Delete()
     async deleteTag(@CurrentUser({ required: true }) admin: Admin,
         @BodyParam('id') id: number): Promise<any> {
-        return await this.service.deleteTagById(id) ? '删除标签成功' : new Error('删除标签失败')
+        await this.service.deleteTagById(id)
+        return {}
     }
 
     // 获取所有标签
-    @Get('/all')
+    @Get()
     async getAllTags() {
         return { content: await this.service.getAllTag() }
     }
