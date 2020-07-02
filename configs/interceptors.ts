@@ -6,6 +6,5 @@ export class AutoAssignJSONInterceptor implements InterceptorInterface {
     if (typeof content === 'object')
       return JSON.stringify(Object.assign({ message: 'ok' }, content))
     return JSON.stringify({ message: content })
-
   }
 }

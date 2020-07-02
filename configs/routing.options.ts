@@ -9,7 +9,6 @@ import { AdminService } from 'app/services'
 import { Admin } from 'app/entities'
 
 export const routingConfigs: RoutingControllersOptions = {
-
   // token校验，返回根据token获取的adimn实体
   async currentUserChecker(action): Promise<Admin> {
     const token: string = action.request.header.authorization
