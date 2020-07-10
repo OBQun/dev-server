@@ -1,6 +1,7 @@
 import { Service } from 'typedi'
 import { Repository, getRepository } from 'typeorm'
 import { Admin } from 'app/entities'
+import { validate } from 'class-validator'
 
 enum EditableAttr {
   name = 1,
@@ -22,7 +23,6 @@ export class AdminService {
 
   // 修改密码
   async changePassword(admin: Admin, newPassword: string): Promise<boolean> {
-    // 校验原密码
     admin.password = newPassword
     return Boolean(await this.repository.save(admin))
   }
@@ -36,6 +36,7 @@ export class AdminService {
   // 更新用户信息
   async updateAdmin(admin: Admin, info: object): Promise<Admin> {
     Object.keys(info).forEach(key => EditableAttr[key] && (admin[key] = info[key]))
+    await validate(admin)
     return await this.repository.save(admin)
   }
 }
