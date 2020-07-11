@@ -10,6 +10,8 @@ import {
   Body,
   Param,
   Authorized,
+  Get,
+  QueryParam,
 } from 'routing-controllers'
 import { ArticleService } from 'app/services'
 import Container from 'typedi'
@@ -73,10 +75,24 @@ export class ArticleController {
   @Put('/:articleId')
   @Authorized(['author'])
   async updateArticle(
-    @CurrentUser({ required: true }) admin: Admin,
     @Param('articleId') id: number,
     @Body() body: baseAttr,
   ): Promise<any> {
     return await this.service.updateArticle(id, body)
+  }
+
+  // 获取文章列表
+  @Get('/:page')
+  async getArticles(
+    @CurrentUser({ required: false }) admin: Admin,
+    @Param('page') page: number = 1,
+    @QueryParam('limit') limit: number = 10,
+    @QueryParam('tag') tag: number,
+  ): Promise<any> {
+    if (admin) {
+      return { content: await this.service.getAdminArticles(admin, page, limit) }
+    } else {
+      return { content: await this.service.getArticles(page, tag, limit) }
+    }
   }
 }

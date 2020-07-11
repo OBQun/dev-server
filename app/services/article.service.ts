@@ -1,7 +1,8 @@
-import { Service } from 'typedi'
-import { Repository, getRepository } from 'typeorm'
-import { Article, Tag } from 'app/entities'
+import Container, { Service } from 'typedi'
+import { Repository, getRepository, Any } from 'typeorm'
+import { Article, Tag, Admin } from 'app/entities'
 import { validate } from 'class-validator'
+import { TagService } from './tag.service'
 
 @Service()
 export class ArticleService {
@@ -28,5 +29,29 @@ export class ArticleService {
     Object.keys(data).forEach(attr => (article[attr] = data[attr]))
     await validate(article)
     return await this.repository.save(article)
+  }
+
+  // 获取文章列表
+  async getArticles(page: number, tag: number, limit: number = 10): Promise<Article[]> {
+    return []
+  }
+
+  // 获取admin的文章列表
+  async getAdminArticles(
+    author: Admin,
+    page: number,
+    limit: number = 10,
+  ): Promise<Article[]> {
+    return await this.repository.find({
+      where: {
+        author,
+      },
+      relations: ['tags'],
+      skip: page - 1,
+      take: limit,
+      order: {
+        createTime: 'DESC',
+      },
+    })
   }
 }

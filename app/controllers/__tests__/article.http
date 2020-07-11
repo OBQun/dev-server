@@ -27,3 +27,8 @@ Content-Disposition: form-data; name="body";
 DELETE {{baseUrl}}/4 HTTP/1.1
 Content-Type: application/json
 Authorization: {{token}}
+
+
+### 获取文章
+GET {{baseUrl}}/1?limit=10&tags=[1] HTTP/1.1
+Authorization: {{token}}

@@ -1,7 +1,6 @@
 import { Service } from 'typedi'
 import { Repository, getRepository } from 'typeorm'
 import { Tag } from 'app/entities'
-import { threadId } from 'worker_threads'
 
 @Service()
 export class TagService {

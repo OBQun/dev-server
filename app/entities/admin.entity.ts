@@ -6,6 +6,7 @@ import {
   UpdateDateColumn,
   OneToMany,
   JoinColumn,
+  JoinTable,
 } from 'typeorm'
 import { IsNotEmpty, MinLength } from 'class-validator'
 import { Article } from 'app/entities'
@@ -33,6 +34,7 @@ export class Admin {
   name: string
 
   @OneToMany(type => Article, article => article.author)
+  @JoinTable()
   articles: Article[]
 
   @CreateDateColumn()

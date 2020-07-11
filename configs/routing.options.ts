@@ -19,11 +19,10 @@ export const routingConfigs: RoutingControllersOptions = {
     request: {
       header: { authorization: token },
     },
-  }): Promise<Admin> {
+  }): Promise<any> {
+    if (!token) return null
     const { data: adminId }: any = verify(token, 'flzx#qcysyhl9t')
-    const admin = await Container.get(AdminService).repository.findOne(adminId)
-    if (!admin) throw new NotFoundError('未找到用户')
-    return admin
+    return await Container.get(AdminService).repository.findOne(adminId)
   },
 
   // 校验执行权限
@@ -36,6 +35,7 @@ export const routingConfigs: RoutingControllersOptions = {
     },
     role,
   ): Promise<boolean> {
+    // 默认文章列表的最后一个param为文章id
     const articleId = url.substring(url.lastIndexOf('/') + 1, url.indexOf('?'))
     if (role.includes('author')) {
       const { data: adminId }: any = verify(token, 'flzx#qcysyhl9t')

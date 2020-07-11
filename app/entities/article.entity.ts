@@ -3,9 +3,10 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
-  JoinColumn,
   ManyToMany,
   JoinTable,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm'
 import { IsNotEmpty } from 'class-validator'
 import { Admin, Tag } from 'app/entities'
@@ -38,4 +39,10 @@ export class Article {
 
   @Column()
   views: number
+
+  @CreateDateColumn()
+  createTime: Date
+
+  @UpdateDateColumn()
+  updateTime: Date
 }
